@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "start": "NODE_ENV=production node dist/index.js",
-    "dev": "NODE_ENV=development nodemon index.ts"
+    "dev": "NODE_ENV=development nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +16,13 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemon": "^3.1.9",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
+    "@types/sequelize": "^4.28.20",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2"
