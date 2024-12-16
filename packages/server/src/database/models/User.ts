@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, Model, Optional } from 'sequelize'
 import dbConnection from '../config'
 
 interface UserAttributes {
@@ -12,11 +12,18 @@ interface UserAttributes {
 
 type Role = 'USER' | 'ADMIN'
 
-class User extends Model<UserAttributes> implements UserAttributes {
+export interface UserInput extends Optional<UserAttributes, 'id'> {}
+
+export interface UserOutput extends Required<UserAttributes> {}
+
+class User extends Model<UserAttributes, UserInput> implements UserAttributes {
 	declare id: number
 	declare email: string
 	declare password: string
-	role?: Role
+	declare role?: Role
+
+	declare readonly createdAt?: Date
+	declare readonly updatedAt?: Date
 }
 
 User.init(
@@ -44,7 +51,6 @@ User.init(
 		tableName: 'Users',
 		timestamps: true,
 		sequelize: dbConnection,
-		paranoid: true,
 	},
 )
 
