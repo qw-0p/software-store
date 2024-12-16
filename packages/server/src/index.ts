@@ -1,25 +1,37 @@
 import dotenv from 'dotenv'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
-import express, { Request, Response } from 'express'
+import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
-import dbConnection from './database/config'
+
+import init from './database/init'
+
+init()
 
 const PORT = process.env.API_PORT || 8001
 const VERSION = process.env.npm_package_version || '1'
 
-const app = express()
+export const get = () => {
+	const app: Application = express()
 
-app.use(express.json())
-app.use(cors())
+	app.use(express.json())
+	app.use(cors())
 
-app.get(`/api/v${VERSION[0]}/`, (req: Request, res: Response) => {
-	res.send('Hello, TypeScript Express!')
-})
+	const endpoint = `/api/v${VERSION[0]}`
+
+	app.get('/', async (req: Request, res: Response) => {
+		res.status(200).send({
+			message: `Server started on: ${PORT}, endpoint: ${endpoint}/`,
+		})
+	})
+
+	// app.use(endpoint, require('./routes'))
+
+	return app
+}
 
 const start = async () => {
+	const app = get()
 	try {
-		await dbConnection.authenticate()
-		await dbConnection.sync()
 		app.listen(PORT, () => {
 			console.log(`Server running at http://localhost:${PORT}`)
 		})

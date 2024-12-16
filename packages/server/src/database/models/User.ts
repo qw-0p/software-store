@@ -10,7 +10,7 @@ interface UserAttributes {
 	updatedAt?: Date
 }
 
-type Role = 'USER' | 'ADMIN' | 'MODERATOR'
+type Role = 'USER' | 'ADMIN'
 
 class User extends Model<UserAttributes> implements UserAttributes {
 	declare id: number
@@ -37,10 +37,11 @@ User.init(
 		},
 		role: {
 			type: DataTypes.STRING,
-			defaultValue: 'MODERATOR',
+			defaultValue: 'USER',
 		},
 	},
 	{
+		tableName: 'Users',
 		timestamps: true,
 		sequelize: dbConnection,
 		paranoid: true,
