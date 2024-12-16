@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import sequelize from './database'
+import dbConnection from './database/config'
 
 const PORT = process.env.API_PORT || 8001
 const VERSION = process.env.npm_package_version || '1'
@@ -18,8 +18,8 @@ app.get(`/api/v${VERSION[0]}/`, (req: Request, res: Response) => {
 
 const start = async () => {
 	try {
-		await sequelize.authenticate()
-		await sequelize.sync()
+		await dbConnection.authenticate()
+		await dbConnection.sync()
 		app.listen(PORT, () => {
 			console.log(`Server running at http://localhost:${PORT}`)
 		})
