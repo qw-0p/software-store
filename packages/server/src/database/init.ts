@@ -5,6 +5,7 @@ import {
 	Product,
 	ProductInfo,
 	Type,
+	TypeProduct,
 	User,
 } from './models'
 import './models/associations'
@@ -15,6 +16,7 @@ const init = () =>
 		Basket.sync(),
 		BasketProduct.sync(),
 		Type.sync(),
+		TypeProduct.sync(),
 		Product.sync(),
 		ProductInfo.sync(),
 		Exporter.sync(),
