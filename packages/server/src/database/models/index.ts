@@ -8,4 +8,4 @@ export { default as Exporter } from './Exporter'
 export { default as Rating } from './Rating'
 export { default as TypeProduct } from './TypeProduct'
 
-// import './associations'
+import './associations'

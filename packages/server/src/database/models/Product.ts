@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize'
-import dbConnection from '../config'
+import sequelize from '../config'
 
 interface ProductAttributes {
 	id: number
@@ -55,9 +55,8 @@ Product.init(
 		},
 	},
 	{
-		tableName: 'Product',
-		timestamps: true,
-		sequelize: dbConnection,
+		tableName: 'products',
+		sequelize,
 	},
 )
 

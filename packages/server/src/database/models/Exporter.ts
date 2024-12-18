@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize'
-import dbConnection from '../config'
+import sequelize from '../config'
 
 interface ExporterAttributes {
 	id: number
@@ -43,9 +43,8 @@ Exporter.init(
 		},
 	},
 	{
-		tableName: 'Exporter',
-		timestamps: true,
-		sequelize: dbConnection,
+		tableName: 'exporters',
+		sequelize,
 	},
 )
 

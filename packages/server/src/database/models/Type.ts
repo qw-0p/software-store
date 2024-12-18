@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize'
-import dbConnection from '../config'
+import sequelize from '../config'
 
 interface TypeAttributes {
 	id: number
@@ -34,9 +34,8 @@ Type.init(
 		},
 	},
 	{
-		tableName: 'Types',
-		timestamps: true,
-		sequelize: dbConnection,
+		tableName: 'types',
+		sequelize,
 	},
 )
 
