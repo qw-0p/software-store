@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize'
-import dbConnection from '../config'
+import sequelize from '../config'
 
 interface BasketAttributes {
 	id: number
@@ -25,8 +25,8 @@ Basket.init(
 		},
 	},
 	{
-		tableName: 'Basket',
-		sequelize: dbConnection,
+		tableName: 'baskets',
+		sequelize,
 	},
 )
 
