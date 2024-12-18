@@ -8,7 +8,6 @@ import {
 	TypeProduct,
 	User,
 } from './models'
-import './models/associations'
 
 const init = () =>
 	Promise.all([

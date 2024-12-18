@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
+import routes from './api/routes'
 
 import init from './database/init'
 
@@ -24,7 +25,7 @@ export const get = () => {
 		})
 	})
 
-	// app.use(endpoint, require('./routes'))
+	app.use(endpoint, routes)
 
 	return app
 }
