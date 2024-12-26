@@ -12,9 +12,9 @@ interface UserAttributes {
 
 type Role = 'USER' | 'ADMIN'
 
-export interface UserInput extends Optional<UserAttributes, 'id' | 'role'> {}
+export type UserInput = Optional<UserAttributes, 'id' | 'role'>
 
-export interface UserOutput extends Required<UserAttributes> {}
+export type UserOutput = Required<UserAttributes>
 
 class User extends Model<UserAttributes, UserInput> implements UserAttributes {
 	declare id: number

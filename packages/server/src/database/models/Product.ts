@@ -11,10 +11,9 @@ interface ProductAttributes {
 	updatedAt?: Date
 }
 
-export interface ProductInput
-	extends Optional<ProductAttributes, 'id' | 'img'> {}
+export type ProductInput = Optional<ProductAttributes, 'id' | 'img'>
 
-export interface ProductOutput extends Required<ProductAttributes> {}
+export type ProductOutput = Required<ProductAttributes>
 
 class Product
 	extends Model<ProductAttributes, ProductInput>

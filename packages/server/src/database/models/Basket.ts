@@ -5,9 +5,9 @@ interface BasketAttributes {
 	id: number
 }
 
-export interface BasketInput extends Optional<BasketAttributes, 'id'> {}
+export type BasketInput = Optional<BasketAttributes, 'id'>
 
-export interface BasketOutPut extends Required<BasketAttributes> {}
+export type BasketOutPut = Required<BasketAttributes>
 
 class Basket
 	extends Model<BasketAttributes, BasketInput>

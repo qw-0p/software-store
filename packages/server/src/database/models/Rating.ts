@@ -8,9 +8,9 @@ interface RatingAttributes {
 	updatedAt?: Date
 }
 
-export interface RatingInput extends Optional<RatingAttributes, 'id'> {}
+export type RatingInput = Optional<RatingAttributes, 'id'>
 
-export interface RatingOutput extends Required<RatingAttributes> {}
+export type RatingOutput = Required<RatingAttributes>
 
 class Rating
 	extends Model<RatingAttributes, RatingInput>

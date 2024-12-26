@@ -9,10 +9,9 @@ interface ExporterAttributes {
 	updatedAt?: Date
 }
 
-export interface ExporterInput
-	extends Optional<ExporterAttributes, 'id' | 'flag'> {}
+export type ExporterInput = Optional<ExporterAttributes, 'id' | 'flag'>
 
-export interface ExporterOutput extends Required<ExporterAttributes> {}
+export type ExporterOutput = Required<ExporterAttributes>
 
 class Exporter
 	extends Model<ExporterAttributes, ExporterInput>

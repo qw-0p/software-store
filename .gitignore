@@ -5,6 +5,7 @@ package-lock.json
 npm-shrinkwrap.json
 *.log
 *.gz
+.idea
 
 # Coveralls
 .nyc_output

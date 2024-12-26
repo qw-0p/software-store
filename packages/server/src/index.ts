@@ -2,6 +2,8 @@ import dotenv from 'dotenv'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
+import 'express-async-errors'
+
 import routes from './api/routes'
 
 import init from './database/init'

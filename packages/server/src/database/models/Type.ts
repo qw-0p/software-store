@@ -8,9 +8,9 @@ interface TypeAttributes {
 	updatedAt?: Date
 }
 
-export interface TypeInput extends Optional<TypeAttributes, 'id'> {}
+export type TypeInput = Optional<TypeAttributes, 'id'>
 
-export interface TypeOutput extends Required<TypeAttributes> {}
+export type TypeOutput = Required<TypeAttributes>
 
 class Type extends Model<TypeAttributes, TypeInput> implements TypeAttributes {
 	declare id: number
