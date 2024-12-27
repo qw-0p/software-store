@@ -1,12 +1,13 @@
 import dotenv from 'dotenv'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
-import express, { Application, Request, Response } from 'express'
+import express, {Application, ErrorRequestHandler, NextFunction, Request, Response} from 'express'
 import cors from 'cors'
 import 'express-async-errors'
 
 import routes from './api/routes'
 
 import init from './database/init'
+import {errorHandler} from "./middlewares/errors";
 
 init()
 
@@ -29,8 +30,13 @@ export const get = () => {
 
 	app.use(endpoint, routes)
 
+	//@ts-ignore
+	app.use(errorHandler)
+
 	return app
 }
+
+
 
 const start = async () => {
 	const app = get()

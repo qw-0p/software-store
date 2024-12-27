@@ -1,8 +1,14 @@
 import { UserInput, UserOutput } from '../models/User'
 import { User } from './../models'
+import DatabaseError from '../../errors/DatabaseError'
 
 export const create = async (payload: UserInput): Promise<UserOutput> => {
-	return await User.create(payload)
+	try {
+		return await User.create(payload)
+	} catch (error: unknown) {
+		throw new DatabaseError({code: 500, message: "Something went wrong", logging: true, context: {error}})
+	}
+
 }
 
 export const getByEmail = async (email: string): Promise<UserOutput> => {
