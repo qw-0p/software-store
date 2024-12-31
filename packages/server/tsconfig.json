@@ -1,19 +1,18 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
-		"outDir": "./dist",
-		"types": ["node", "express"],
-		"strict": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"noImplicitAny": true,
-		"strictFunctionTypes": true,
-		"strictPropertyInitialization": true,
-		"noImplicitThis": true,
-		"alwaysStrict": true
-	},
-	"include": ["src/*.ts", "src/database/config.ts"],
-	"exclude": ["node_modules"]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "express"],
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["src/*"],
+      "@lib/*": ["lib/*"],
+      "@errors/*": ["errors/*"],
+      "@db/*": ["database/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@types/*": ["types/*"],
+      "@api/*": ["api/*"]
+    }
+  },
+  "include": ["src", "src/database/config.ts", "src/types", "src/*.ts"],
 }
