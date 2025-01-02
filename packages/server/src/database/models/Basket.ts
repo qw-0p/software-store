@@ -1,9 +1,16 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  Optional,
+  ForeignKey,
+  CreationOptional,
+} from 'sequelize';
 import sequelize from '../config';
+import { User } from '.';
 
 interface BasketAttributes {
   id: number;
-
+  ownerId: ForeignKey<User['id']>;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -16,10 +23,12 @@ class Basket
   extends Model<BasketAttributes, BasketInput>
   implements BasketAttributes
 {
-  declare id: number;
+  declare id: CreationOptional<number>;
 
-  declare readonly createdAt: Date;
-  declare readonly updatedAt: Date;
+  declare ownerId: ForeignKey<User['id']>;
+
+  declare readonly createdAt: CreationOptional<Date>;
+  declare readonly updatedAt: CreationOptional<Date>;
 }
 
 Basket.init(
@@ -29,10 +38,20 @@ Basket.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id',
+      },
+      field: 'owner_id',
+    },
   },
   {
     tableName: 'baskets',
     sequelize,
+    timestamps: true,
   },
 );
 

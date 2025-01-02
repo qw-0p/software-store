@@ -11,6 +11,7 @@ const dbConnection = new Sequelize(dbName, dbUser, dbPassword, {
   dialect: dbDialect,
   host: dbHost,
   port: dbPort,
+  logging: false,
 });
 
 export default dbConnection;

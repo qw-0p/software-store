@@ -1,12 +1,12 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, CreationOptional } from 'sequelize';
 import sequelize from '../config';
-import { Role } from '../../types/user';
+import { UserRole } from '@pTypes/user';
 
 interface UserAttributes {
   id: number;
   email: string;
   password: string;
-  role: string;
+  role: UserRole;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -15,13 +15,13 @@ export type UserInput = Optional<UserAttributes, 'id' | 'role'>;
 export type UserOutput = Required<UserAttributes>;
 
 class User extends Model<UserAttributes, UserInput> implements UserAttributes {
-  declare id: number;
+  declare id: CreationOptional<number>;
   declare email: string;
   declare password: string;
-  declare role: Role;
+  declare role: UserRole;
 
-  declare readonly createdAt: Date;
-  declare readonly updatedAt: Date;
+  declare readonly createdAt: CreationOptional<Date>;
+  declare readonly updatedAt: CreationOptional<Date>;
 }
 
 User.init(
@@ -48,6 +48,7 @@ User.init(
   {
     tableName: 'users',
     sequelize,
+    timestamps: true,
   },
 );
 

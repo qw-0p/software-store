@@ -1,7 +1,7 @@
 import { UserOutput } from '@db/models/User';
-import { User } from '@api/interfaces/user.interface';
+import { IUser } from '@api/interfaces/user.interface';
 
-export const toUser = (user: UserOutput): User => {
+export const toUser = (user: UserOutput): IUser => {
   return {
     id: user.id,
     email: user.email,

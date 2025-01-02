@@ -1,18 +1,23 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "express"],
+    "types": ["jest", "node", "express"],
     "moduleResolution": "node",
     "baseUrl": "./src",
+    "outDir": "./dist",
     "paths": {
       "@/*": ["src/*"],
-      "@lib/*": ["lib/*"],
+      "@utils/*": ["utils/*"],
       "@errors/*": ["errors/*"],
       "@db/*": ["database/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@types/*": ["types/*"],
+      "@middlewares/*": ["api/middlewares/*"],
+      "@pTypes/*": ["types/*"],
       "@api/*": ["api/*"]
-    }
+    },
+    "typeRoots": ["./node_modules/@types", "./src/types"],
   },
-  "include": ["src", "src/database/config.ts", "src/types", "src/*.ts"],
+  "esModuleInterop": true,
+  "skipLibCheck": true,
+  "forceConsistentCasingInFileNames": true,
+  "include": ["__tests__/**/*", "src", "src/database/config.ts", "src/*.ts"],
 }

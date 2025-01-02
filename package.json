@@ -3,23 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:server": "eslint ./packages/server",
+    "lint:client": "eslint ./packages/client",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qw-0p/grocery-store.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Oleksandr Sarkisov",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/qw-0p/grocery-store/issues"
   },
-  "homepage": "https://github.com/qw-0p/grocery-store#readme",
   "workspaces": [
     "packages/*"
   ],
-  "description": "",
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c",
+  "description": "This repository is a monorepo that houses the entire e-commerce store project, including both server and client components",
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "eslint": "^9.17.0",
