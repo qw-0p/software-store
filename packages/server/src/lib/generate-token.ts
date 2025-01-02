@@ -5,7 +5,7 @@ export const generateToken = (
   email: string,
   role: string,
 ): string => {
-  return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {
+  return jwt.sign({ id, email, role }, process.env.SECRET_KEY as string, {
     expiresIn: '24h',
   });
 };
