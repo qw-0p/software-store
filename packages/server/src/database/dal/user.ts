@@ -1,10 +1,16 @@
 import { UserInput, UserOutput } from '../models/User';
 import { User } from '../models';
-import DatabaseError from '../../errors/DatabaseError';
+import DatabaseError from '@errors/DatabaseError';
+import * as Basket from './basket';
 
 export const create = async (payload: UserInput): Promise<UserOutput> => {
   try {
-    return await User.create(payload);
+    const newUser = await User.create(payload);
+    const { id } = newUser;
+    console.log(id, 'ID');
+    await Basket.create({ userId: id }).catch((err) => console.log(err));
+
+    return newUser;
   } catch (error: unknown) {
     throw new DatabaseError({
       code: 500,

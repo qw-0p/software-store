@@ -3,3 +3,5 @@ export type CreateUserDto = {
   password: string;
   role: string;
 };
+
+export type LoginUserDto = Pick<CreateUserDto, 'email' | 'password'>;

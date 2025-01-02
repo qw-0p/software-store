@@ -3,15 +3,15 @@ import {
   Basket,
   BasketProduct,
   Type,
-  TypeProduct as TypeBrand,
+  TypeProduct,
   Rating,
   Product,
   Exporter,
   ProductInfo,
 } from '.';
 
-User.hasOne(Basket);
-Basket.belongsTo(User);
+User.hasOne(Basket, { foreignKey: 'userId', sourceKey: 'id' });
+Basket.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' });
 
 User.hasMany(Rating);
 Rating.belongsTo(User);
@@ -34,5 +34,5 @@ BasketProduct.belongsTo(Product);
 Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
 
-Type.belongsToMany(Exporter, { through: TypeBrand });
-Exporter.belongsToMany(Type, { through: TypeBrand });
+Type.belongsToMany(Exporter, { through: TypeProduct });
+Exporter.belongsToMany(Type, { through: TypeProduct });

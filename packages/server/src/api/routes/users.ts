@@ -8,4 +8,10 @@ userRouter.post('/signup', async (req: Request, res: Response) => {
   res.status(201).send(user);
 });
 
+userRouter.post('/login', async (req: Request, res: Response) => {
+  const user = await userController.login(req.body);
+
+  res.status(201).send(user);
+});
+
 export default userRouter;
