@@ -5,6 +5,7 @@ import * as mapper from './mapper';
 import BadRequestError from '@errors/BadRequestError';
 import bcrypt from 'bcrypt';
 import { generateToken } from '@lib/generate-token';
+import { JwtPayload } from 'jsonwebtoken';
 
 export const create = async (payload: CreateUserDto): Promise<string> => {
   const { email, password } = payload;
@@ -54,4 +55,9 @@ export const login = async (payload: LoginUserDto): Promise<string> => {
 
 export const getByEmail = async (email: string): Promise<User> => {
   return mapper.toUser(await userService.getByEmail(email));
+};
+
+export const check = async (payload: JwtPayload) => {
+  const { user } = payload;
+  return user;
 };

@@ -7,7 +7,6 @@ export const create = async (payload: UserInput): Promise<UserOutput> => {
   try {
     const newUser = await User.create(payload);
     const { id } = newUser;
-    console.log(id, 'ID');
     await Basket.create({ userId: id }).catch((err) => console.log(err));
 
     return newUser;

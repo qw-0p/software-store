@@ -7,7 +7,7 @@ import 'express-async-errors';
 import routes from './api/routes';
 
 import init from './database/init';
-import { errorHandler } from '@middlewares/errors';
+import { errorsMiddleware } from '@middlewares/.';
 
 init();
 
@@ -30,8 +30,7 @@ export const get = () => {
 
   app.use(endpoint, routes);
 
-  //@ts-ignore
-  app.use(errorHandler);
+  app.use(errorsMiddleware);
 
   return app;
 };
@@ -40,7 +39,7 @@ const start = async () => {
   const app = get();
   try {
     app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
+      console.info(`Server running at http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error(error);

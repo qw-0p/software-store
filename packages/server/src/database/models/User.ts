@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional, CreationOptional } from 'sequelize';
 import sequelize from '../config';
-import { Role } from '../../types/user';
+import { UserRole } from '../../types/user';
 
 interface UserAttributes {
   id: number;
@@ -18,7 +18,7 @@ class User extends Model<UserAttributes, UserInput> implements UserAttributes {
   declare id: CreationOptional<number>;
   declare email: string;
   declare password: string;
-  declare role: Role;
+  declare role: UserRole;
 
   declare readonly createdAt: CreationOptional<Date>;
   declare readonly updatedAt: CreationOptional<Date>;

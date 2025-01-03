@@ -1,7 +1,12 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '@errors/CustomError';
 
-export const errorHandler = (err: Error, req: Request, res: Response) => {
+export const errorsMiddleware = (
+  err: Error,
+  _: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   if (err instanceof CustomError) {
     const { statusCode, errors, logging } = err;
     if (logging) {
@@ -18,11 +23,11 @@ export const errorHandler = (err: Error, req: Request, res: Response) => {
       );
     }
 
-    return res.status(statusCode).send({ errors });
+    return next(res.status(statusCode).send({ errors }));
   }
 
   console.error(JSON.stringify(err, null, 2));
-  return res
-    .status(500)
-    .send({ errors: [{ message: 'Something went wrong' }] });
+  return next(
+    res.status(500).send({ errors: [{ message: 'Something went wrong' }] }),
+  );
 };
