@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, CreationOptional } from 'sequelize';
 import sequelize from '../config';
 
 interface ProductAttributes {
@@ -6,6 +6,7 @@ interface ProductAttributes {
   name: string;
   price: number;
   rating: number;
+  description: string;
   img?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -19,14 +20,15 @@ class Product
   extends Model<ProductAttributes, ProductInput>
   implements ProductAttributes
 {
-  declare id: number;
+  declare id: CreationOptional<number>;
   declare name: string;
   declare price: number;
   declare rating: number;
+  declare description: string;
   declare img: string;
 
-  declare readonly createdAt?: Date;
-  declare readonly updatedAt?: Date;
+  declare readonly createdAt?: CreationOptional<Date>;
+  declare readonly updatedAt?: CreationOptional<Date>;
 }
 
 Product.init(
@@ -48,6 +50,10 @@ Product.init(
     rating: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     img: {
       type: DataTypes.STRING,

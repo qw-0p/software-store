@@ -1,15 +1,19 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model, Optional, CreationOptional } from 'sequelize';
 import sequelize from '../config';
 
 interface ExporterAttributes {
-  id: number;
-  country: string;
-  flag?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  id: CreationOptional<number>;
+  name: string;
+  logo?: string;
+  origin?: string;
+  createdAt?: CreationOptional<Date>;
+  updatedAt?: CreationOptional<Date>;
 }
 
-export type ExporterInput = Optional<ExporterAttributes, 'id' | 'flag'>;
+export type ExporterInput = Optional<
+  ExporterAttributes,
+  'id' | 'logo' | 'origin'
+>;
 
 export type ExporterOutput = Required<ExporterAttributes>;
 
@@ -17,12 +21,13 @@ class Exporter
   extends Model<ExporterAttributes, ExporterInput>
   implements ExporterAttributes
 {
-  declare id: number;
-  declare country: string;
-  declare img: string;
+  declare id: CreationOptional<number>;
+  declare name: string;
+  declare logo: string;
+  declare origin: string;
 
-  declare readonly createdAt?: Date;
-  declare readonly updatedAt?: Date;
+  declare readonly createdAt?: CreationOptional<Date>;
+  declare readonly updatedAt?: CreationOptional<Date>;
 }
 
 Exporter.init(
@@ -32,13 +37,18 @@ Exporter.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    country: {
+    name: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
     },
-    flag: {
+    origin: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    logo: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

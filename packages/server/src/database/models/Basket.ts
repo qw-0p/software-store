@@ -10,7 +10,6 @@ import { User } from '.';
 
 interface BasketAttributes {
   id: number;
-
   userId: ForeignKey<User['id']>;
   createdAt?: Date;
   updatedAt?: Date;

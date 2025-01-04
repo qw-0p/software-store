@@ -13,8 +13,14 @@ import {
 User.hasOne(Basket, { foreignKey: 'userId', sourceKey: 'id' });
 Basket.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' });
 
+User.hasMany(Type, { foreignKey: 'ownerId', sourceKey: 'id' });
+Type.belongsTo(User, { foreignKey: 'ownerId', targetKey: 'id' });
+
 User.hasMany(Rating);
 Rating.belongsTo(User);
+
+User.hasMany(Product, { foreignKey: 'productId', sourceKey: 'id' });
+Product.belongsTo(User, { foreignKey: 'productId', targetKey: 'id' });
 
 Basket.hasMany(BasketProduct);
 BasketProduct.belongsTo(Basket);
