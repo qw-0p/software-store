@@ -1,6 +1,8 @@
 import { Router, Request, Response } from 'express';
 import * as userController from '../controllers/user';
 import { authMiddleware, checkRoleMiddleware } from '@middlewares/.';
+import { Role } from '../../types/user';
+
 const userRouter = Router();
 
 userRouter.post('/signup', async (req: Request, res: Response) => {
@@ -18,7 +20,7 @@ userRouter.post('/login', async (req: Request, res: Response) => {
 userRouter.post(
   '/auth',
   authMiddleware,
-  checkRoleMiddleware('ADMIN', 'MODERATOR'),
+  checkRoleMiddleware(Role.ADMIN, Role.MODERATOR),
   async (req: Request, res: Response) => {
     const result = await userController.check(req);
 

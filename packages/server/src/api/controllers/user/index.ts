@@ -59,5 +59,6 @@ export const getByEmail = async (email: string): Promise<User> => {
 
 export const check = async (payload: JwtPayload) => {
   const { user } = payload;
+
   return user;
 };
