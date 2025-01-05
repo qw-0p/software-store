@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express';
 import * as typeController from '@api/controllers/type';
 import { authMiddleware } from '@middlewares/auth';
 import { CustomRequest } from '../../types/requests';
+import BadRequestError from '@errors/BadRequestError';
 
 const typeRouter = Router();
 
@@ -12,6 +13,20 @@ typeRouter.post('/', authMiddleware, async (req: Request, res: Response) => {
   });
 
   res.status(201).send(type);
+});
+
+typeRouter.delete('/', authMiddleware, async (req: Request, res: Response) => {
+  const result = await typeController.remove(req.body);
+
+  if (result) {
+    res.status(204).send({ message: 'Success' });
+  } else {
+    throw new BadRequestError({
+      code: 404,
+      message: 'Item not found',
+      logging: true,
+    });
+  }
 });
 
 export default typeRouter;

@@ -10,7 +10,7 @@ interface TypeAttributes {
   updatedAt?: Date;
 }
 
-export type TypeInput = Optional<TypeAttributes, 'id'>;
+export type TypeInput = Optional<TypeAttributes, 'id' | 'ownerId'>;
 
 export type TypeOutput = Required<TypeAttributes>;
 

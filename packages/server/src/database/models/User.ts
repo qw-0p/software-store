@@ -6,7 +6,7 @@ interface UserAttributes {
   id: number;
   email: string;
   password: string;
-  role: string;
+  role: UserRole;
   createdAt?: Date;
   updatedAt?: Date;
 }

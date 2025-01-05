@@ -4,8 +4,22 @@ import DatabaseError from '@errors/DatabaseError';
 
 export const create = async (payload: TypeInput): Promise<TypeOutput> => {
   try {
-    const newType = await Type.create(payload);
-    return newType;
+    return await Type.create(payload);
+  } catch (error: unknown) {
+    throw new DatabaseError({
+      code: 500,
+      message: 'Something went wrong',
+      logging: true,
+      context: { error },
+    });
+  }
+};
+
+export const remove = async (payload: TypeInput): Promise<number> => {
+  try {
+    return await Type.destroy({
+      where: payload,
+    });
   } catch (error: unknown) {
     throw new DatabaseError({
       code: 500,
