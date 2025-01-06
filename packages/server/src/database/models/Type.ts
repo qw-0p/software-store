@@ -55,6 +55,7 @@ Type.init(
   {
     tableName: 'types',
     sequelize,
+    timestamps: true,
   },
 );
 

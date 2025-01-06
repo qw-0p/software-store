@@ -51,6 +51,7 @@ Basket.init(
   {
     tableName: 'baskets',
     sequelize,
+    timestamps: true,
   },
 );
 
