@@ -10,9 +10,9 @@
       "@errors/*": ["errors/*"],
       "@db/*": ["database/*"],
       "@middlewares/*": ["middlewares/*"],
-      "@types/*": ["types/*"],
+      "@pTypes/*": ["types/*"],
       "@api/*": ["api/*"]
     }
   },
-  "include": ["src", "src/database/config.ts", "src/types", "src/*.ts"],
+  "include": ["src", "src/database/config.ts", "src/*.ts"],
 }
