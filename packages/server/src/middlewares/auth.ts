@@ -29,7 +29,6 @@ export const authMiddleware: RequestHandler = (
       });
     }
 
-    console.log(data, 'DATA');
     (req as JwtPayload).user = data;
   });
 

@@ -1,11 +1,17 @@
-import { DataTypes, Model, Optional, CreationOptional } from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  Optional,
+  CreationOptional,
+  ForeignKey,
+} from 'sequelize';
 import sequelize from '../config';
 import { User } from '.';
 
 interface TypeAttributes {
   id: number;
   name: string;
-  ownerId: number;
+  ownerId: ForeignKey<User['id']>;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -18,7 +24,7 @@ class Type extends Model<TypeAttributes, TypeInput> implements TypeAttributes {
   declare id: CreationOptional<number>;
   declare name: string;
 
-  declare ownerId: number;
+  declare ownerId: ForeignKey<User['id']>;
 
   declare readonly createdAt: CreationOptional<Date>;
   declare readonly updatedAt: CreationOptional<Date>;
