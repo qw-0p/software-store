@@ -18,7 +18,7 @@ interface ProductAttributes {
   ownerId: ForeignKey<User['id']>;
   exporterId: ForeignKey<Exporter['id']>;
   description: string;
-  typeId?: ForeignKey<Type['id']> | null;
+  typeId?: ForeignKey<Type['id']>;
   img?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -41,7 +41,7 @@ class Product
   declare exporterId: ForeignKey<Exporter['id']>;
 
   declare img?: string;
-  declare typeId?: ForeignKey<Type['id']> | null;
+  declare typeId?: ForeignKey<Type['id']>;
 
   declare readonly createdAt?: CreationOptional<Date>;
   declare readonly updatedAt?: CreationOptional<Date>;
