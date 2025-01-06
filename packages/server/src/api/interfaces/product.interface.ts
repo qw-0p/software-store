@@ -4,6 +4,8 @@ export interface Product {
   price: number;
   rating: number;
   description: string;
+  exporterId: number;
+  typeId?: number;
   img?: string;
   createdAt?: Date;
   updatedAt?: Date;
