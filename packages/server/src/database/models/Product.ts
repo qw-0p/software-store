@@ -6,16 +6,19 @@ import {
   ForeignKey,
 } from 'sequelize';
 import sequelize from '../config';
-import { Type, User } from '.';
+import User from './User';
+import Type from './Type';
+import Exporter from './Exporter';
 
 interface ProductAttributes {
   id: number;
   name: string;
   price: number;
   rating: number;
-  typeId?: ForeignKey<Type['id']> | null;
   ownerId: ForeignKey<User['id']>;
+  exporterId: ForeignKey<Exporter['id']>;
   description: string;
+  typeId?: ForeignKey<Type['id']> | null;
   img?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -33,10 +36,12 @@ class Product
   declare name: string;
   declare price: number;
   declare rating: number;
-  declare typeId: ForeignKey<Type['id']> | null;
   declare ownerId: ForeignKey<User['id']>;
   declare description: string;
-  declare img: string;
+  declare exporterId: ForeignKey<Exporter['id']>;
+
+  declare img?: string;
+  declare typeId?: ForeignKey<Type['id']> | null;
 
   declare readonly createdAt?: CreationOptional<Date>;
   declare readonly updatedAt?: CreationOptional<Date>;
@@ -80,6 +85,15 @@ Product.init(
       },
       field: 'owner_id',
     },
+    exporterId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Exporter,
+        key: 'id',
+      },
+      field: 'exporter_id',
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -91,6 +105,7 @@ Product.init(
   {
     tableName: 'products',
     sequelize,
+    timestamps: true,
   },
 );
 
