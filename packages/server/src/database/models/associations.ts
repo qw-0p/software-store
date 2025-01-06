@@ -10,26 +10,26 @@ import {
   ProductInfo,
 } from '.';
 
-User.hasOne(Basket, { foreignKey: 'userId', sourceKey: 'id' });
-Basket.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' });
+User.hasOne(Basket, { foreignKey: 'user_id', sourceKey: 'id' });
+Basket.belongsTo(User, { foreignKey: 'user_id', targetKey: 'id' });
 
-User.hasMany(Type, { foreignKey: 'ownerId', sourceKey: 'id' });
-Type.belongsTo(User, { foreignKey: 'ownerId', targetKey: 'id' });
+User.hasMany(Type, { foreignKey: 'owner_id', sourceKey: 'id' });
+Type.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
+
+User.hasMany(Product, { foreignKey: 'owner_id', sourceKey: 'id' });
+Product.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
+
+Type.hasMany(Product, { foreignKey: 'type_id', sourceKey: 'id' });
+Product.belongsTo(Type, { foreignKey: 'type_id', targetKey: 'id' });
+
+// Exporter.hasMany(Product, { foreignKey: 'exporter_id', sourceKey: 'id' });
+// Product.belongsTo(Exporter, { foreignKey: 'exporter_id', targetKey: 'id' });
 
 User.hasMany(Rating);
 Rating.belongsTo(User);
 
-User.hasMany(Product, { foreignKey: 'productId', sourceKey: 'id' });
-Product.belongsTo(User, { foreignKey: 'productId', targetKey: 'id' });
-
 Basket.hasMany(BasketProduct);
 BasketProduct.belongsTo(Basket);
-
-Type.hasMany(Product);
-Product.belongsTo(Type);
-
-Exporter.hasMany(Product);
-Product.belongsTo(Exporter);
 
 Product.hasMany(Rating);
 Rating.belongsTo(Product);
