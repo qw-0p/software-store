@@ -45,6 +45,7 @@ Basket.init(
         model: User,
         key: 'id',
       },
+      field: 'user_id',
     },
   },
   {
