@@ -22,8 +22,8 @@ Product.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 Type.hasMany(Product, { foreignKey: 'type_id', sourceKey: 'id' });
 Product.belongsTo(Type, { foreignKey: 'type_id', targetKey: 'id' });
 
-// Exporter.hasMany(Product, { foreignKey: 'exporter_id', sourceKey: 'id' });
-// Product.belongsTo(Exporter, { foreignKey: 'exporter_id', targetKey: 'id' });
+Exporter.hasMany(Product, { foreignKey: 'exporter_id', sourceKey: 'id' });
+Product.belongsTo(Exporter, { foreignKey: 'exporter_id', targetKey: 'id' });
 
 User.hasMany(Rating);
 Rating.belongsTo(User);
