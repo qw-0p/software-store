@@ -49,6 +49,7 @@ Type.init(
         model: User,
         key: 'id',
       },
+      field: 'owner_id',
     },
   },
   {
