@@ -1,10 +1,10 @@
-import { UserRole } from '../../types/user';
+import { UserRole } from '@pTypes/user';
 
 export interface User {
   id: number;
   email: string;
   password: string;
-  role: UserRole;
+  role?: UserRole;
   createdAt: Date;
   updatedAt: Date;
 }

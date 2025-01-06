@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional, CreationOptional } from 'sequelize';
 import sequelize from '../config';
-import { UserRole } from '../../types/user';
+import { UserRole } from '@pTypes/user';
 
 interface UserAttributes {
   id: number;

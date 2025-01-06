@@ -1,4 +1,4 @@
-import { UserRole } from '../../types/user';
+import { UserRole } from '@pTypes/user';
 
 export type CreateUserDto = {
   email: string;
