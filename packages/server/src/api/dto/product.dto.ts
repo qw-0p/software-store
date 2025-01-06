@@ -3,5 +3,9 @@ export type CreateProductDto = {
   price: number;
   rating: number;
   info: string;
+  exporterId: number;
+  description: string;
+  ownerId: number;
+  typeId?: number;
   img?: string;
 };
