@@ -3,6 +3,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
+import helmet from 'helmet';
 
 import routes from './api/routes';
 
@@ -17,6 +18,7 @@ const VERSION = process.env.npm_package_version || '1';
 export const get = () => {
   const app: Application = express();
 
+  app.use(helmet());
   app.use(express.json());
   app.use(cors());
 
