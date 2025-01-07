@@ -1,7 +1,7 @@
 import {
   Basket,
   BasketProduct,
-  Exporter,
+  Company,
   Product,
   ProductInfo,
   Type,
@@ -15,8 +15,8 @@ const init = async () => {
     console.time();
     await User.sync();
     console.log('===> USERS table synchronized successfully. <===');
-    await Exporter.sync();
-    console.log('===> EXPORTERS table synchronized successfully. <===');
+    await Company.sync();
+    console.log('===> COMPANIES table synchronized successfully. <===');
     await Type.sync();
     console.log('===> TYPES table synchronized successfully. <===');
     await Product.sync();

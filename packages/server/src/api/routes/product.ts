@@ -6,12 +6,22 @@ import { CustomRequest } from '@pTypes/requests';
 const productRouter = Router();
 
 productRouter.post('/', authMiddleware, async (req: Request, res: Response) => {
-  const type = await productController.create({
+  const product = await productController.create({
     ...req.body,
     ownerId: (req as CustomRequest).user.id,
   });
 
-  res.status(201).send(type);
+  res.status(201).send(product);
+});
+
+productRouter.get('/', authMiddleware, async (req: Request, res: Response) => {
+  const productsResult = await productController.getAll({
+    ...req.query,
+    ownerId: (req as CustomRequest).user.id,
+  });
+  const products = productsResult.rows;
+
+  res.status(201).send(products);
 });
 
 export default productRouter;

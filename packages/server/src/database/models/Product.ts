@@ -8,7 +8,7 @@ import {
 import sequelize from '../config';
 import User from './User';
 import Type from './Type';
-import Exporter from './Exporter';
+import Company from './Company';
 
 interface ProductAttributes {
   id: number;
@@ -16,7 +16,7 @@ interface ProductAttributes {
   price: number;
   rating: number;
   ownerId: ForeignKey<User['id']>;
-  exporterId: ForeignKey<Exporter['id']>;
+  companyId: ForeignKey<Company['id']>;
   description: string;
   typeId?: ForeignKey<Type['id']>;
   img?: string;
@@ -24,7 +24,10 @@ interface ProductAttributes {
   updatedAt?: Date;
 }
 
-export type ProductInput = Optional<ProductAttributes, 'id' | 'img' | 'typeId'>;
+export type ProductInput = Optional<
+  ProductAttributes,
+  'id' | 'img' | 'typeId' | 'rating'
+>;
 
 export type ProductOutput = Required<ProductAttributes>;
 
@@ -38,7 +41,7 @@ class Product
   declare rating: number;
   declare ownerId: ForeignKey<User['id']>;
   declare description: string;
-  declare exporterId: ForeignKey<Exporter['id']>;
+  declare companyId: ForeignKey<Company['id']>;
 
   declare img?: string;
   declare typeId?: ForeignKey<Type['id']>;
@@ -60,7 +63,7 @@ Product.init(
       allowNull: false,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     rating: {
@@ -85,14 +88,14 @@ Product.init(
       },
       field: 'owner_id',
     },
-    exporterId: {
+    companyId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Exporter,
+        model: Company,
         key: 'id',
       },
-      field: 'exporter_id',
+      field: 'company_id',
     },
     description: {
       type: DataTypes.STRING,
