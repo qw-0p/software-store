@@ -1,4 +1,4 @@
-import { authMiddleware } from '@middlewares/auth';
+import { authMiddleware } from '@api/middlewares/auth';
 import { Request, Response, Router } from 'express';
 import * as productController from '@api/controllers/product';
 import { CustomRequest } from '@pTypes/requests';

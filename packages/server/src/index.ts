@@ -8,7 +8,7 @@ import helmet from 'helmet';
 import routes from './api/routes';
 
 import init from './database/init';
-import { errorsMiddleware } from '@middlewares/.';
+import { errorsMiddleware } from '@api/middlewares/.';
 
 init();
 

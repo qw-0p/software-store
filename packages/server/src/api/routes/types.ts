@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import * as typeController from '@api/controllers/type';
-import { authMiddleware } from '@middlewares/auth';
-import { CustomRequest } from '../../types/requests';
+import { authMiddleware } from '@api/middlewares/auth';
+import { CustomRequest } from '@pTypes/requests';
 import BadRequestError from '@errors/BadRequestError';
 
 const typeRouter = Router();
