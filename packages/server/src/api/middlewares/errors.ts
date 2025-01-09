@@ -26,7 +26,6 @@ export const errorsMiddleware = (
     return next(res.status(statusCode).send({ errors }));
   }
 
-  console.error(JSON.stringify(err, null, 2));
   return next(
     res.status(500).send({ errors: [{ message: 'Something went wrong' }] }),
   );
