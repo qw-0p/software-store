@@ -1,15 +1,23 @@
 import { Router, Request, Response } from 'express';
 import * as userController from '../controllers/user';
-import { authMiddleware, checkRoleMiddleware } from '@api/middlewares/.';
+import {
+  authMiddleware,
+  checkRoleMiddleware,
+  validationMiddleware,
+} from '@api/middlewares/.';
 import { Role } from '@pTypes/user';
 
 const userRouter = Router();
 
-userRouter.post('/signup', async (req: Request, res: Response) => {
-  const user = await userController.create(req.body);
+userRouter.post(
+  '/signup',
+  validationMiddleware('/user/signup'),
+  async (req: Request, res: Response) => {
+    const user = await userController.create(req.body);
 
-  res.status(201).send(user);
-});
+    res.status(201).send(user);
+  },
+);
 
 userRouter.post('/login', async (req: Request, res: Response) => {
   const user = await userController.login(req.body);
