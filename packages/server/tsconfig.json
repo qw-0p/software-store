@@ -9,7 +9,7 @@
       "@lib/*": ["lib/*"],
       "@errors/*": ["errors/*"],
       "@db/*": ["database/*"],
-      "@middlewares/*": ["middlewares/*"],
+      "@middlewares/*": ["api/middlewares/*"],
       "@pTypes/*": ["types/*"],
       "@api/*": ["api/*"]
     }
