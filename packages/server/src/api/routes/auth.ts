@@ -11,7 +11,7 @@ const userRouter = Router();
 
 userRouter.post(
   '/signup',
-  validationMiddleware('/user/signup'),
+  validationMiddleware('/auth/signup'),
   async (req: Request, res: Response) => {
     const user = await userController.create(req.body);
 
@@ -19,14 +19,18 @@ userRouter.post(
   },
 );
 
-userRouter.post('/login', async (req: Request, res: Response) => {
-  const user = await userController.login(req.body);
-
-  res.status(201).send(user);
-});
-
 userRouter.post(
-  '/auth',
+  '/login',
+  validationMiddleware('/auth/login'),
+  async (req: Request, res: Response) => {
+    const user = await userController.login(req.body);
+
+    res.status(201).send(user);
+  },
+);
+
+userRouter.get(
+  '/',
   authMiddleware,
   checkRoleMiddleware(Role.ADMIN, Role.MODERATOR),
   async (req: Request, res: Response) => {
