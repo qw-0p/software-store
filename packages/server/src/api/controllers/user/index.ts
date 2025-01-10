@@ -4,7 +4,7 @@ import * as userService from '@db/services/UserService';
 import * as mapper from './mapper';
 import BadRequestError from '@errors/BadRequestError';
 import bcrypt from 'bcrypt';
-import { generateToken } from '@lib/generate-token';
+import { generateToken } from '@utils/generate-token';
 import { JwtPayload } from 'jsonwebtoken';
 
 export const create = async (payload: CreateUserDto): Promise<string> => {

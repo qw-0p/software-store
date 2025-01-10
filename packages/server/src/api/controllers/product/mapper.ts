@@ -1,8 +1,8 @@
 import { ProductOutput } from '@db/models/Product';
-import { Product } from '@api/interfaces/product.interface';
+import { IProduct } from '@api/interfaces/product.interface';
 import { ProductsResult } from '@pTypes/product';
 
-export const toProduct = (product: ProductOutput): Product => {
+export const toProduct = (product: ProductOutput): IProduct => {
   return {
     id: product.id,
     name: product.name,
@@ -19,9 +19,9 @@ export const toProduct = (product: ProductOutput): Product => {
 
 export const toProducts = (
   products: ProductsResult,
-): { rows: Product[]; count: number } => {
+): { rows: IProduct[]; count: number } => {
   return {
-    rows: products.rows.map((product: Product) => ({
+    rows: products.rows.map((product: IProduct) => ({
       id: product.id,
       name: product.name,
       price: product.price,
@@ -32,7 +32,7 @@ export const toProducts = (
       img: product.img,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
-    })) as Product[],
+    })),
     count: products.count,
   };
 };
