@@ -1,12 +1,12 @@
 import { CategoryOutput } from '@db/models/Category';
-import { Type } from '@api/interfaces/type.interface';
+import { Category } from '@api/interfaces/category.interface';
 
-export const toType = (type: CategoryOutput): Type => {
+export const toCategory = (category: CategoryOutput): Category => {
   return {
-    id: type.id,
-    name: type.name,
-    ownerId: type.ownerId,
-    createdAt: type.createdAt,
-    updatedAt: type.updatedAt,
+    id: category.id,
+    name: category.name,
+    ownerId: category.ownerId,
+    createdAt: category.createdAt,
+    updatedAt: category.updatedAt,
   };
 };

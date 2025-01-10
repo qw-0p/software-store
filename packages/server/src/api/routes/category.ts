@@ -10,12 +10,12 @@ categoryRouter.post(
   '/',
   authMiddleware,
   async (req: Request, res: Response) => {
-    const type = await categoryController.create({
+    const category = await categoryController.create({
       ...req.body,
       ownerId: (req as CustomRequest).user.id,
     });
 
-    res.status(201).send(type);
+    res.status(201).send(category);
   },
 );
 
