@@ -4,7 +4,7 @@ import {
   Company,
   Product,
   ProductInfo,
-  Type,
+  Category,
   TypeProduct,
   User,
   Rating,
@@ -17,8 +17,8 @@ const init = async () => {
     console.log('===> USERS table synchronized successfully. <===');
     await Company.sync();
     console.log('===> COMPANIES table synchronized successfully. <===');
-    await Type.sync();
-    console.log('===> TYPES table synchronized successfully. <===');
+    await Category.sync();
+    console.log('===> CATEGORY table synchronized successfully. <===');
     await Product.sync();
     console.log('===> PRODUCTS table synchronized successfully. <===');
     await Basket.sync();

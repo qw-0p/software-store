@@ -1,7 +1,7 @@
-import { TypeOutput } from '@db/models/Type';
+import { CategoryOutput } from '@db/models/Category';
 import { Type } from '@api/interfaces/type.interface';
 
-export const toType = (type: TypeOutput): Type => {
+export const toType = (type: CategoryOutput): Type => {
   return {
     id: type.id,
     name: type.name,

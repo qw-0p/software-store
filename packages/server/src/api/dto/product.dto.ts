@@ -5,14 +5,14 @@ export type CreateProductDto = {
   description: string;
   ownerId: number;
   slug?: string;
-  typeId?: number;
+  categoryId?: number;
   img?: string;
 };
 
 export type GetAllProductWithQueryDto = {
   ownerId: number;
   companyId: string;
-  typeId: string;
+  categoryId: string;
   limit: string;
   page: string;
 };

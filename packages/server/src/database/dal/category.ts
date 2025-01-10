@@ -1,10 +1,11 @@
-import { TypeInput, TypeOutput } from '../models/Type';
-import { Type } from '../models';
+import Category, { CategoryInput, CategoryOutput } from '../models/Category';
 import DatabaseError from '@errors/DatabaseError';
 
-export const create = async (payload: TypeInput): Promise<TypeOutput> => {
+export const create = async (
+  payload: CategoryInput,
+): Promise<CategoryOutput> => {
   try {
-    return await Type.create(payload);
+    return await Category.create(payload);
   } catch (error: unknown) {
     throw new DatabaseError({
       code: 500,
@@ -15,9 +16,9 @@ export const create = async (payload: TypeInput): Promise<TypeOutput> => {
   }
 };
 
-export const remove = async (payload: TypeInput): Promise<number> => {
+export const remove = async (payload: CategoryInput): Promise<number> => {
   try {
-    return await Type.destroy({
+    return await Category.destroy({
       where: payload,
     });
   } catch (error: unknown) {

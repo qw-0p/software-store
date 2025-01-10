@@ -2,6 +2,8 @@ import { authMiddleware, validationMiddleware } from '@api/middlewares';
 import { Request, Response, Router } from 'express';
 import * as productController from '@api/controllers/product';
 import { CustomRequest } from '@pTypes/requests';
+import { GetAllProductParams } from '@pTypes/product';
+import { GetAllProductWithQueryDto } from '@api/dto/product.dto';
 
 const productRouter = Router();
 
@@ -20,10 +22,9 @@ productRouter.post(
 );
 
 productRouter.get('/', authMiddleware, async (req: Request, res: Response) => {
-  const productsResult = await productController.getAll({
-    ...req.query,
-    ownerId: (req as CustomRequest).user.id,
-  });
+  const filters: any = req.query;
+
+  const productsResult = await productController.getAll(filters);
   const products = productsResult.rows;
 
   res.status(201).send(products);

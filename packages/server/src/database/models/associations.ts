@@ -2,7 +2,7 @@ import {
   User,
   Basket,
   BasketProduct,
-  Type,
+  Category,
   TypeProduct,
   Rating,
   Product,
@@ -16,14 +16,14 @@ Company.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 User.hasOne(Basket, { foreignKey: 'owner_id', sourceKey: 'id' });
 Basket.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 
-User.hasMany(Type, { foreignKey: 'owner_id', sourceKey: 'id' });
-Type.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
+User.hasMany(Category, { foreignKey: 'owner_id', sourceKey: 'id' });
+Category.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 
 User.hasMany(Product, { foreignKey: 'owner_id', sourceKey: 'id' });
 Product.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 
-Type.hasMany(Product, { foreignKey: 'type_id', sourceKey: 'id' });
-Product.belongsTo(Type, { foreignKey: 'type_id', targetKey: 'id' });
+Category.hasMany(Product, { foreignKey: 'category_id', sourceKey: 'id' });
+Product.belongsTo(Category, { foreignKey: 'category_id', targetKey: 'id' });
 
 Company.hasMany(Product, { foreignKey: 'company_id', sourceKey: 'id' });
 Product.belongsTo(Company, { foreignKey: 'company_id', targetKey: 'id' });
@@ -43,5 +43,5 @@ BasketProduct.belongsTo(Product);
 Product.hasMany(ProductInfo, { as: 'info' });
 ProductInfo.belongsTo(Product);
 
-Type.belongsToMany(Company, { through: TypeProduct });
-Company.belongsToMany(Type, { through: TypeProduct });
+Category.belongsToMany(Company, { through: TypeProduct });
+Company.belongsToMany(Category, { through: TypeProduct });

@@ -8,7 +8,7 @@ import {
 import sequelize from '../config';
 import { User } from '.';
 
-interface TypeAttributes {
+interface CategoryAttributes {
   id: number;
   name: string;
   ownerId: ForeignKey<User['id']>;
@@ -16,11 +16,14 @@ interface TypeAttributes {
   updatedAt?: Date;
 }
 
-export type TypeInput = Optional<TypeAttributes, 'id' | 'ownerId'>;
+export type CategoryInput = Optional<CategoryAttributes, 'id' | 'ownerId'>;
 
-export type TypeOutput = Required<TypeAttributes>;
+export type CategoryOutput = Required<CategoryAttributes>;
 
-class Type extends Model<TypeAttributes, TypeInput> implements TypeAttributes {
+class Category
+  extends Model<CategoryAttributes, CategoryInput>
+  implements CategoryAttributes
+{
   declare id: CreationOptional<number>;
   declare name: string;
 
@@ -30,7 +33,7 @@ class Type extends Model<TypeAttributes, TypeInput> implements TypeAttributes {
   declare readonly updatedAt: CreationOptional<Date>;
 }
 
-Type.init(
+Category.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -53,10 +56,10 @@ Type.init(
     },
   },
   {
-    tableName: 'types',
+    tableName: 'categories',
     sequelize,
     timestamps: true,
   },
 );
 
-export default Type;
+export default Category;

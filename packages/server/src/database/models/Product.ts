@@ -7,7 +7,7 @@ import {
 } from 'sequelize';
 import sequelize from '../config';
 import User from './User';
-import Type from './Type';
+import Category from './Category';
 import Company from './Company';
 
 interface ProductAttributes {
@@ -19,7 +19,7 @@ interface ProductAttributes {
   companyId: ForeignKey<Company['id']>;
   description: string;
   slug: string;
-  typeId?: ForeignKey<Type['id']>;
+  categoryId?: ForeignKey<Category['id']>;
   img?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -46,7 +46,7 @@ class Product
 
   declare slug: string;
   declare img?: string;
-  declare typeId?: ForeignKey<Type['id']>;
+  declare categoryId?: ForeignKey<Category['id']>;
 
   declare readonly createdAt?: CreationOptional<Date>;
   declare readonly updatedAt?: CreationOptional<Date>;
@@ -72,14 +72,14 @@ Product.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    typeId: {
+    categoryId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: Type,
+        model: Category,
         key: 'id',
       },
-      field: 'type_id',
+      field: 'category_id',
     },
     ownerId: {
       type: DataTypes.INTEGER,

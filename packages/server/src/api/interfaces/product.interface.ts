@@ -5,7 +5,7 @@ export interface IProduct {
   rating: number;
   description: string;
   companyId: number;
-  typeId?: number;
+  categoryId?: number;
   img?: string;
   createdAt?: Date;
   updatedAt?: Date;
