@@ -12,7 +12,7 @@ interface CompanyAttributes {
   id: CreationOptional<number>;
   name: string;
   logo?: string;
-  creatorId: ForeignKey<User['id']>;
+  ownerId: ForeignKey<User['id']>;
   createdAt?: CreationOptional<Date>;
   updatedAt?: CreationOptional<Date>;
 }
@@ -28,7 +28,7 @@ class Company
   declare id: CreationOptional<number>;
   declare name: string;
   declare logo: string;
-  declare creatorId: ForeignKey<User['id']>;
+  declare ownerId: ForeignKey<User['id']>;
 
   declare readonly createdAt?: CreationOptional<Date>;
   declare readonly updatedAt?: CreationOptional<Date>;
@@ -46,14 +46,14 @@ Company.init(
       unique: true,
       allowNull: false,
     },
-    creatorId: {
+    ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: User,
         key: 'id',
       },
-      field: 'creator_id',
+      field: 'owner_id',
     },
     logo: {
       type: DataTypes.STRING,

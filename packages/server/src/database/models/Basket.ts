@@ -10,7 +10,7 @@ import { User } from '.';
 
 interface BasketAttributes {
   id: number;
-  userId: ForeignKey<User['id']>;
+  ownerId: ForeignKey<User['id']>;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -25,7 +25,7 @@ class Basket
 {
   declare id: CreationOptional<number>;
 
-  declare userId: ForeignKey<User['id']>;
+  declare ownerId: ForeignKey<User['id']>;
 
   declare readonly createdAt: CreationOptional<Date>;
   declare readonly updatedAt: CreationOptional<Date>;
@@ -38,14 +38,14 @@ Basket.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
+    ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: User,
         key: 'id',
       },
-      field: 'user_id',
+      field: 'owner_id',
     },
   },
   {

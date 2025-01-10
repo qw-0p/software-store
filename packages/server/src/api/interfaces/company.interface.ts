@@ -2,7 +2,7 @@ export interface Company {
   id: number;
   name: string;
   logo?: string;
-  creatorId: number;
+  ownerId: number;
   createdAt?: Date;
   updatedAt?: Date;
 }

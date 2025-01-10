@@ -6,7 +6,7 @@ export const toCompany = (product: CompanyOutput): Company => {
     id: product.id,
     name: product.name,
     logo: product.logo,
-    creatorId: product.creatorId,
+    ownerId: product.ownerId,
     createdAt: product.createdAt,
     updatedAt: product.updatedAt,
   };

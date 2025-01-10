@@ -4,7 +4,7 @@ import {
   authMiddleware,
   checkRoleMiddleware,
   validationMiddleware,
-} from '@api/middlewares/.';
+} from '@api/middlewares';
 import { Role } from '@pTypes/user';
 
 const userRouter = Router();

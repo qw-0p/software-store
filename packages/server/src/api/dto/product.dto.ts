@@ -1,7 +1,6 @@
 export type CreateProductDto = {
   name: string;
   price: number;
-  info: string;
   companyId: number;
   description: string;
   ownerId: number;

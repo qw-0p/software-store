@@ -10,11 +10,11 @@ import {
   ProductInfo,
 } from '.';
 
-User.hasMany(Company, { foreignKey: 'creator_id', sourceKey: 'id' });
-Company.belongsTo(User, { foreignKey: 'creator_id', targetKey: 'id' });
+User.hasMany(Company, { foreignKey: 'owner_id', sourceKey: 'id' });
+Company.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 
-User.hasOne(Basket, { foreignKey: 'user_id', sourceKey: 'id' });
-Basket.belongsTo(User, { foreignKey: 'user_id', targetKey: 'id' });
+User.hasOne(Basket, { foreignKey: 'owner_id', sourceKey: 'id' });
+Basket.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
 
 User.hasMany(Type, { foreignKey: 'owner_id', sourceKey: 'id' });
 Type.belongsTo(User, { foreignKey: 'owner_id', targetKey: 'id' });
