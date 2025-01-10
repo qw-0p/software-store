@@ -6,7 +6,7 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["src/*"],
-      "@lib/*": ["lib/*"],
+      "@utils/*": ["utils/*"],
       "@errors/*": ["errors/*"],
       "@db/*": ["database/*"],
       "@middlewares/*": ["api/middlewares/*"],
