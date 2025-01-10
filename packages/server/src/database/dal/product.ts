@@ -1,35 +1,42 @@
 import Product, { ProductOutput, ProductInput } from '../models/Product';
-import DatabaseError from '@errors/DatabaseError';
 import { ProductsResult } from '@pTypes/product';
 import { FindAndCountOptions } from 'sequelize';
+import { isEmpty } from '@utils/is-empty';
+import { GetAllProductWithQuery } from '@db/dal/types';
 
 export const create = async (payload: ProductInput): Promise<ProductOutput> => {
-  try {
-    const product = await Product.create(payload);
-    return product as ProductOutput;
-  } catch (error: unknown) {
-    throw new DatabaseError({
-      code: 500,
-      message: 'Something went wrong',
-      logging: true,
-      context: { error },
-    });
-  }
+  const product = await Product.create(payload);
+  return product as ProductOutput;
 };
 
 export const findAndCountAll = async (
-  payload: FindAndCountOptions,
+  payload: GetAllProductWithQuery,
 ): Promise<ProductsResult> => {
-  try {
-    const result = await Product.findAndCountAll(payload);
-    return result;
-  } catch (error) {
-    console.log(error);
-    throw new DatabaseError({
-      code: 500,
-      message: 'Something went wrong',
-      logging: true,
-      context: { error },
-    });
-  }
+  const { companyId, typeId } = payload;
+
+  const page: number = payload.page ? Number(payload.page) : 1;
+  const limit: number = payload.limit ? Number(payload.limit) : 10;
+
+  const offset: number = page * limit - limit;
+
+  const params = {
+    limit,
+    offset,
+    where: {
+      ...(typeId && { typeId: Number(typeId) }),
+      ...(companyId && { companyId: Number(companyId) }),
+    },
+  };
+  const result = await Product.findAndCountAll(params as FindAndCountOptions);
+  return result;
+};
+
+export const checkSlugExists = async (slug: string): Promise<boolean> => {
+  const productWithSlug = await Product.findOne({
+    where: {
+      slug,
+    },
+  });
+
+  return !isEmpty(productWithSlug || {});
 };

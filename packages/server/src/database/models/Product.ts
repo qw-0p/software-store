@@ -18,6 +18,7 @@ interface ProductAttributes {
   ownerId: ForeignKey<User['id']>;
   companyId: ForeignKey<Company['id']>;
   description: string;
+  slug: string;
   typeId?: ForeignKey<Type['id']>;
   img?: string;
   createdAt?: Date;
@@ -26,7 +27,7 @@ interface ProductAttributes {
 
 export type ProductInput = Optional<
   ProductAttributes,
-  'id' | 'img' | 'typeId' | 'rating'
+  'id' | 'slug' | 'rating'
 >;
 
 export type ProductOutput = Required<ProductAttributes>;
@@ -43,6 +44,7 @@ class Product
   declare description: string;
   declare companyId: ForeignKey<Company['id']>;
 
+  declare slug: string;
   declare img?: string;
   declare typeId?: ForeignKey<Type['id']>;
 
@@ -101,6 +103,11 @@ Product.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    slug: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     img: {
       type: DataTypes.STRING,
     },
@@ -108,7 +115,7 @@ Product.init(
   {
     tableName: 'products',
     sequelize,
-    timestamps: true,
+    paranoid: true,
   },
 );
 
