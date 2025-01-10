@@ -12,7 +12,7 @@ companyRouter.post(
   async (req: Request, res: Response) => {
     const company = await companyController.create({
       ...req.body,
-      creatorId: (req as CustomRequest).user.id,
+      ownerId: (req as CustomRequest).user.id,
     });
 
     res.status(201).send(company);
