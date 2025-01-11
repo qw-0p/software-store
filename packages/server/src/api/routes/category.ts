@@ -3,6 +3,7 @@ import * as categoryController from '@api/controllers/category';
 import { authMiddleware } from '@api/middlewares/auth';
 import { CustomRequest } from '@pTypes/requests';
 import BadRequestError from '@errors/BadRequestError';
+import { deleteById } from '@api/controllers/category';
 
 const categoryRouter = Router();
 
@@ -20,10 +21,11 @@ categoryRouter.post(
 );
 
 categoryRouter.delete(
-  '/',
+  '/:id',
   authMiddleware,
   async (req: Request, res: Response) => {
-    const result = await categoryController.remove(req.body);
+    const id = Number(req.params.id);
+    const result = await categoryController.deleteById(id);
 
     if (result) {
       res.status(204).send({ message: 'Success' });

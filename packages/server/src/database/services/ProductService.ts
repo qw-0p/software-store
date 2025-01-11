@@ -20,3 +20,14 @@ export const getAll = async (
 ): Promise<ProductsResult> => {
   return productDal.findAndCountAll(params);
 };
+
+export const updateById = async (
+  id: number,
+  payload: Partial<ProductInput>,
+): Promise<ProductOutput> => {
+  return productDal.updateById(id, payload);
+};
+
+export const deleteById = async (id: number): Promise<boolean> => {
+  return productDal.deleteById(id);
+};

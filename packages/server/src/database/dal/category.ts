@@ -16,17 +16,10 @@ export const create = async (
   }
 };
 
-export const remove = async (id: number): Promise<number> => {
-  try {
-    return await Category.destroy({
-      where: { id },
-    });
-  } catch (error: unknown) {
-    throw new DatabaseError({
-      code: 500,
-      message: 'Something went wrong',
-      logging: true,
-      context: { error },
-    });
-  }
+export const deleteById = async (id: number): Promise<boolean> => {
+  const isDeleted = await Category.destroy({
+    where: { id },
+  });
+
+  return !!isDeleted;
 };

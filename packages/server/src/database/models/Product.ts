@@ -45,11 +45,11 @@ class Product
   declare companyId: ForeignKey<Company['id']>;
 
   declare slug: string;
-  declare img?: string;
-  declare categoryId?: ForeignKey<Category['id']>;
+  declare img: string;
+  declare categoryId: ForeignKey<Category['id']>;
 
-  declare readonly createdAt?: CreationOptional<Date>;
-  declare readonly updatedAt?: CreationOptional<Date>;
+  declare readonly createdAt: CreationOptional<Date>;
+  declare readonly updatedAt: CreationOptional<Date>;
 }
 
 Product.init(
@@ -74,7 +74,6 @@ Product.init(
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
       references: {
         model: Category,
         key: 'id',
@@ -100,8 +99,7 @@ Product.init(
       field: 'company_id',
     },
     description: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.TEXT,
     },
     slug: {
       type: DataTypes.STRING,

@@ -7,6 +7,6 @@ export const create = async (
   return categoryDal.create(payload);
 };
 
-export const remove = async (id: number): Promise<number> => {
-  return categoryDal.remove(id);
+export const deleteById = async (id: number): Promise<boolean> => {
+  return categoryDal.deleteById(id);
 };

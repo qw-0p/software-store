@@ -9,6 +9,8 @@ export type CreateProductDto = {
   img?: string;
 };
 
+export type UpdateProductDto = Partial<CreateProductDto>;
+
 export type GetAllProductWithQueryDto = {
   [key: string]: string | undefined;
   ownerId?: string;

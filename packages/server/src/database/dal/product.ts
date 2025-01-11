@@ -1,12 +1,12 @@
-import Product, { ProductOutput, ProductInput } from '../models/Product';
+import Product, { ProductInput, ProductOutput } from '../models/Product';
 import { ProductsResult } from '@pTypes/product';
 import { FindAndCountOptions } from 'sequelize';
 import { isEmpty } from '@utils/is-empty';
 import { GetAllProductFilters } from '@db/dal/types';
+import DatabaseError from '@errors/DatabaseError';
 
 export const create = async (payload: ProductInput): Promise<ProductOutput> => {
-  const product = await Product.create(payload);
-  return product as ProductOutput;
+  return await Product.create(payload);
 };
 
 export const findAndCountAll = async (
@@ -27,8 +27,33 @@ export const findAndCountAll = async (
       ...(companyId && { companyId: Number(companyId) }),
     },
   };
-  const result = await Product.findAndCountAll(params as FindAndCountOptions);
-  return result;
+  return await Product.findAndCountAll(params as FindAndCountOptions);
+};
+
+export const updateById = async (
+  id: number,
+  payload: Partial<ProductInput>,
+): Promise<ProductOutput> => {
+  const product = await Product.findByPk(id);
+
+  if (!product) {
+    throw new DatabaseError({
+      message: 'Product is not exists',
+      code: 400,
+    });
+  }
+
+  return await product.update(payload);
+};
+
+export const deleteById = async (id: number): Promise<boolean> => {
+  const isDeleted = await Product.destroy({
+    where: {
+      id,
+    },
+  });
+
+  return !!isDeleted;
 };
 
 export const checkSlugExists = async (slug: string): Promise<boolean> => {
