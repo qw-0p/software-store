@@ -1,6 +1,6 @@
 import { UserRole } from '@pTypes/user';
 
-export interface User {
+export interface IUser {
   id: number;
   email: string;
   password: string;

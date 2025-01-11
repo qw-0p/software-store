@@ -1,7 +1,7 @@
 import { CategoryOutput } from '@db/models/Category';
-import { Category } from '@api/interfaces/category.interface';
+import { ICategory } from '@api/interfaces/category.interface';
 
-export const toCategory = (category: CategoryOutput): Category => {
+export const toCategory = (category: CategoryOutput): ICategory => {
   return {
     id: category.id,
     name: category.name,

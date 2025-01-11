@@ -1,7 +1,7 @@
 import { CompanyOutput } from '@db/models/Company';
-import { Company } from '@api/interfaces/company.interface';
+import { ICompany } from '@api/interfaces/company.interface';
 
-export const toCompany = (product: CompanyOutput): Company => {
+export const toCompany = (product: CompanyOutput): ICompany => {
   return {
     id: product.id,
     name: product.name,

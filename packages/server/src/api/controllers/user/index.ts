@@ -1,5 +1,5 @@
 import { CreateUserDto, LoginUserDto } from '@api/dto/user.dto';
-import { User } from '@api/interfaces/user.interface';
+import { IUser } from '@api/interfaces/user.interface';
 import * as userService from '@db/services/UserService';
 import * as mapper from './mapper';
 import BadRequestError from '@errors/BadRequestError';
@@ -35,7 +35,7 @@ export const login = async (payload: LoginUserDto): Promise<string> => {
   return generateToken(user.id, user.email, user.role);
 };
 
-export const getByEmail = async (email: string): Promise<User> => {
+export const getByEmail = async (email: string): Promise<IUser> => {
   return mapper.toUser(await userService.getByEmail(email));
 };
 
