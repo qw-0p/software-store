@@ -4,6 +4,7 @@ import * as productController from '@api/controllers/product';
 import { CustomRequest } from '@pTypes/requests';
 import { GetAllProductParams } from '@pTypes/product';
 import { GetAllProductWithQueryDto } from '@api/dto/product.dto';
+import { GetAllProductFilters } from '@db/dal/types';
 
 const productRouter = Router();
 
@@ -22,7 +23,7 @@ productRouter.post(
 );
 
 productRouter.get('/', authMiddleware, async (req: Request, res: Response) => {
-  const filters: any = req.query;
+  const filters = req.query as GetAllProductWithQueryDto;
 
   const productsResult = await productController.getAll(filters);
   const products = productsResult.rows;

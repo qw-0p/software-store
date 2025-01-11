@@ -10,9 +10,10 @@ export type CreateProductDto = {
 };
 
 export type GetAllProductWithQueryDto = {
-  ownerId: number;
-  companyId: string;
-  categoryId: string;
-  limit: string;
-  page: string;
+  [key: string]: string | undefined;
+  ownerId?: string;
+  companyId?: string;
+  categoryId?: string;
+  limit?: string;
+  page?: string;
 };

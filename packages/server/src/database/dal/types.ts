@@ -1,7 +1,9 @@
-export interface GetAllProductWithQuery {
-  ownerId: number;
-  companyId?: string;
-  typeId?: string;
-  limit?: string;
-  page?: string;
+type Filter = {
+  limit: string;
+  page: string;
+};
+export interface GetAllProductFilters extends Filter {
+  ownerId: string;
+  companyId: string;
+  categoryId: string;
 }

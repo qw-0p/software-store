@@ -2,7 +2,7 @@ import { ProductInput, ProductOutput } from '@db/models/Product';
 import * as productDal from '@db/dal/product';
 import { ProductsResult } from '@pTypes/product';
 import { kebabCase } from '@utils/kebab-case';
-import { GetAllProductWithQuery } from '@db/dal/types';
+import { GetAllProductFilters } from '@db/dal/types';
 
 export const create = async (payload: ProductInput): Promise<ProductOutput> => {
   const slug = kebabCase(payload.name);
@@ -16,7 +16,7 @@ export const create = async (payload: ProductInput): Promise<ProductOutput> => {
 };
 
 export const getAll = async (
-  params: GetAllProductWithQuery,
+  params: Partial<GetAllProductFilters>,
 ): Promise<ProductsResult> => {
   return productDal.findAndCountAll(params);
 };

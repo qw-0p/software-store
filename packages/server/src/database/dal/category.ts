@@ -16,10 +16,10 @@ export const create = async (
   }
 };
 
-export const remove = async (payload: CategoryInput): Promise<number> => {
+export const remove = async (id: number): Promise<number> => {
   try {
     return await Category.destroy({
-      where: payload,
+      where: { id },
     });
   } catch (error: unknown) {
     throw new DatabaseError({

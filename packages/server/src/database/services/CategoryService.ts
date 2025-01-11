@@ -7,6 +7,6 @@ export const create = async (
   return categoryDal.create(payload);
 };
 
-export const remove = async (payload: CategoryInput): Promise<number> => {
-  return categoryDal.remove(payload);
+export const remove = async (id: number): Promise<number> => {
+  return categoryDal.remove(id);
 };

@@ -2,7 +2,7 @@ import Product, { ProductOutput, ProductInput } from '../models/Product';
 import { ProductsResult } from '@pTypes/product';
 import { FindAndCountOptions } from 'sequelize';
 import { isEmpty } from '@utils/is-empty';
-import { GetAllProductWithQuery } from '@db/dal/types';
+import { GetAllProductFilters } from '@db/dal/types';
 
 export const create = async (payload: ProductInput): Promise<ProductOutput> => {
   const product = await Product.create(payload);
@@ -10,9 +10,9 @@ export const create = async (payload: ProductInput): Promise<ProductOutput> => {
 };
 
 export const findAndCountAll = async (
-  payload: GetAllProductWithQuery,
+  payload: Partial<GetAllProductFilters>,
 ): Promise<ProductsResult> => {
-  const { companyId, typeId } = payload;
+  const { companyId, categoryId } = payload;
 
   const page: number = payload.page ? Number(payload.page) : 1;
   const limit: number = payload.limit ? Number(payload.limit) : 10;
@@ -23,7 +23,7 @@ export const findAndCountAll = async (
     limit,
     offset,
     where: {
-      ...(typeId && { typeId: Number(typeId) }),
+      ...(categoryId && { typeId: Number(categoryId) }),
       ...(companyId && { companyId: Number(companyId) }),
     },
   };
