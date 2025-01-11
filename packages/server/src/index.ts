@@ -4,6 +4,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import helmet from 'helmet';
+import morgan from 'morgan';
 
 import routes from './api/routes';
 
@@ -12,12 +13,13 @@ import { errorsMiddleware } from '@api/middlewares/.';
 
 init();
 
-const PORT = process.env.API_PORT || 8001;
+const PORT = process.env.API_PORT || 8080;
 const VERSION = process.env.npm_package_version || '1';
 
 export const get = () => {
   const app: Application = express();
 
+  app.use(morgan('dev'));
   app.use(helmet());
   app.use(express.json());
   app.use(cors());
@@ -31,7 +33,6 @@ export const get = () => {
   });
 
   app.use(endpoint, routes);
-
   app.use(errorsMiddleware);
 
   return app;
