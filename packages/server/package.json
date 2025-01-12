@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "start": "NODE_ENV=production node dist/index.js",
-    "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register src/index.ts"
+    "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
