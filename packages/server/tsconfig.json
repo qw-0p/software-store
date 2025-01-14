@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "outDir": "./dist",
     "types": ["node", "express"],
     "moduleResolution": "node",
     "baseUrl": "./src",
@@ -12,7 +13,9 @@
       "@middlewares/*": ["api/middlewares/*"],
       "@pTypes/*": ["types/*"],
       "@api/*": ["api/*"]
-    }
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src", "src/database/config.ts", "src/*.ts"],
+  "include": ["src/**/*"],
 }
