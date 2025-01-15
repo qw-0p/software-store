@@ -1,10 +1,9 @@
 import { Request, Response, Router } from 'express';
-import CategoryController from '@api/controllers/category';
+import * as categoryController from '@api/controllers/category';
 import { authMiddleware } from '@api/middlewares/auth';
 import { CustomRequest } from '@pTypes/requests';
 import BadRequestError from '@errors/BadRequestError';
-
-const categoryController = new CategoryController();
+import { deleteById } from '@api/controllers/category';
 
 const categoryRouter = Router();
 

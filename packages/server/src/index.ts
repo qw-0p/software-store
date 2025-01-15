@@ -5,7 +5,6 @@ import cors from 'cors';
 import 'express-async-errors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import swaggerUi from 'swagger-ui-express';
 
 import routes from './api/routes';
 
@@ -19,25 +18,13 @@ const VERSION = process.env.npm_package_version || '1';
 
 export const get = () => {
   const app: Application = express();
-  const endpoint = `/api/v${VERSION[0]}`;
 
   app.use(morgan('dev'));
   app.use(helmet());
   app.use(express.json());
   app.use(cors());
-  app.use(express.static('public'));
 
-  app.use(endpoint, routes);
-
-  app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(undefined, {
-      swaggerOptions: {
-        url: '/swagger.json',
-      },
-    }),
-  );
+  const endpoint = `/api/v${VERSION[0]}`;
 
   app.get('/', async (req: Request, res: Response) => {
     res.status(200).send({
@@ -45,6 +32,7 @@ export const get = () => {
     });
   });
 
+  app.use(endpoint, routes);
   app.use(errorsMiddleware);
 
   return app;
