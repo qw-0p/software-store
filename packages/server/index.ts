@@ -7,10 +7,10 @@ import 'express-async-errors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-import routes from './api/routes';
+import routes from './src/api/routes';
 
-import init from './database/init';
-import { errorsMiddleware } from '@api/middlewares/.';
+import init from './db/init';
+import { errorsMiddleware } from './src/api/middlewares';
 
 init();
 

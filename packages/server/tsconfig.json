@@ -3,21 +3,21 @@
   "compilerOptions": {
     "types": ["jest", "node", "express"],
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "outDir": "./dist",
     "paths": {
-      "@/*": ["src/*"],
-      "@utils/*": ["utils/*"],
-      "@errors/*": ["errors/*"],
-      "@db/*": ["database/*"],
-      "@middlewares/*": ["api/middlewares/*"],
-      "@pTypes/*": ["types/*"],
-      "@api/*": ["api/*"]
+      "@/*": ["*"],
+      "@utils/*": ["src/utils/*"],
+      "@errors/*": ["src/errors/*"],
+      "@db/*": ["db/*"],
+      "@middlewares/*": ["src/api/middlewares/*"],
+      "@pTypes/*": ["src/types/*"],
+      "@api/*": ["src/api/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/types"],
   },
   "esModuleInterop": true,
   "skipLibCheck": true,
   "forceConsistentCasingInFileNames": true,
-  "include": ["__tests__/**/*", "src", "src/database/config.ts", "src/*.ts"],
+  "include": ["__tests__/**/*", "src/*.ts", "db/**/*.ts"],
 }
