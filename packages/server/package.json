@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "tsc -p . && tsc-alias",
     "start": "NODE_ENV=production node dist/index.js",
-    "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register ./index.ts",
+    "dev": "NODE_ENV=development nodemon -r tsconfig-paths/register ./index.ts",
     "test": "jest",
     "test:integration": "jest --testPathPattern=integration/*",
     "test:unit": "jest --testPathPattern=unit/*"
@@ -48,7 +48,6 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript-eslint": "^8.18.2"

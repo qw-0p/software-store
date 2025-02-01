@@ -9,7 +9,7 @@ import morgan from 'morgan';
 import routes from './src/api/routes';
 
 import init from './db/init';
-import { errorsMiddleware } from './src/api/middlewares';
+import { errorsMiddleware } from '@api/middlewares';
 
 init();
 
