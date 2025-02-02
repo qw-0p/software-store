@@ -1,3 +1,4 @@
+name: software-store
 services:
     frontend:
         build: ./packages/client
