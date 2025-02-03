@@ -1,0 +1,88 @@
+name: software-store
+services:
+  frontend:
+    init: true
+    image: image_software_store_client_dev
+    container_name: frontend_dev
+    build:
+      context: ./
+      dockerfile: ./packages/client/docker/Dockerfile.client.development
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - type: bind
+        source: ./packages/client
+        target: /var/www/packages/client
+      - type: volume
+        target: /var/www/packages/client/node_modules
+  server:
+    container_name: backend_dev
+    image: image_software_store_server_dev
+    build:
+      context: ./
+      dockerfile: ./packages/server/docker/Dockerfile.server.development
+    restart: always
+    environment:
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: root
+      DB_NAME: software_store_dev
+      DB_DRIVER: postgres
+    ports:
+      - "7654:7654"
+    env_file:
+      -  ./packages/server/env/.env.development
+    volumes:
+      - type: bind
+        source: ./packages/server
+        target: /var/www/packages/server
+      - type: volume
+        target: /var/www/packages/server/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    container_name: postgres_dev
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: software_store_dev
+      POSTGRES_PORT: 5432
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./packages/server/db/pgdata:/var/lib/postgresql/data/pgdata
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    command: >
+      postgres -c max_connections=1000
+               -c shared_buffers=256MB
+               -c effective_cache_size=768MB
+               -c maintenance_work_mem=64MB
+               -c checkpoint_completion_target=0.7
+               -c wal_buffers=16MB
+               -c default_statistics_target=100
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d software_store_dev" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+volumes:
+  pgdata:
+    driver: local

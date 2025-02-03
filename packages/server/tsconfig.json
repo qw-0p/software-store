@@ -1,12 +1,11 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "types": ["jest", "node", "express"],
     "baseUrl": "./",
     "outDir": "./dist",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "target": "es6",
     "paths": {
       "@/*": ["*"],
       "@utils/*": ["src/utils/*"],
@@ -16,9 +15,8 @@
       "@pTypes/*": ["src/types/*"],
       "@api/*": ["src/api/*"]
     },
-    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "skipLibCheck": true,
   "forceConsistentCasingInFileNames": true,
-  "include": ["__tests__/**/*", "src/*.ts", "db/**/*.ts"],
+  "include": ["__tests__/**/*", "src/*.ts", "db/**/*.ts"]
 }

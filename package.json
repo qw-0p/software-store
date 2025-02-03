@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "pnpm --recursive --parallel dev",
+    "build": "pnpm --recursive --parallel build",
+    "start": "pnpm --recursive --parallel start",
     "lint:server": "eslint ./packages/server",
     "lint:client": "eslint ./packages/client",
     "lint": "eslint ."

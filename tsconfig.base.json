@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["**/node_modules", "node_modules", "dist", "**/dist"]
+}
