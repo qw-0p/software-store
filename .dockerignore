@@ -4,4 +4,4 @@ coverage
 .gitignore
 *.md
 */dist
-#Dockerfile*
+Dockerfile*
