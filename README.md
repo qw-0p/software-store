@@ -33,9 +33,9 @@ cd packages/server
 pnpm dev
 ```
 After that, the project will be launched. Local ports (if they are not used): 
-- Backend http://localhost:7654
+- Backend  http://localhost:7654
 - Frontend http://localhost:3000
-- Adminer http://localhost:8080
+- Adminer  http://localhost:8080
 
 ## Technologies
 
