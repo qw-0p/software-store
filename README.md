@@ -9,7 +9,7 @@
 Hi everyone, glad to see you in my repository, my name is Oleksandr Sarkisov I am Full Stack Developer and now I will tell you what this project is for and how to use it. 
 Software Store is an analogue of any e-commerce shop where you can register, choose products, add them to your basket and make purchases. 
 It was created as a pet project, so you won't be able to buy anything 😄.
-<i>At the moment this project is in development status. I can't guarantee its stability.</i>
+<b>At the moment this project is in development status. I can't guarantee its stability.</b>
 
 
 ## How to run
